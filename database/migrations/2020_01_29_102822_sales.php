@@ -15,7 +15,7 @@ class Sales extends Migration
     public function up()
     {
         Schema::create('sales', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('sales_id');
             $table->string('item_id', 7)->default('');
             $table->integer('price', false, true);
             $table->integer('discount', false, true);

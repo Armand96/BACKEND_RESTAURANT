@@ -14,7 +14,7 @@ class Menus extends Migration
     public function up()
     {
         Schema::create('menus', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('menu_id');
             $table->string('menu_name', 20);
             $table->string('menu_img_name', 75);
             $table->boolean('active');

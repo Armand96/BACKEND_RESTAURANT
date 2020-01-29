@@ -15,7 +15,7 @@ class OrderToday extends Migration
     public function up()
     {
         Schema::create('order_today', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('order_id');
             $table->string('menu_id');
             $table->string('item_id');
             $table->timestamp('order_date')->default(DB::raw('CURRENT_TIMESTAMP'));

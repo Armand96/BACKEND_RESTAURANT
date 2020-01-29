@@ -15,7 +15,7 @@ class Logs extends Migration
     public function up()
     {
         Schema::create('logs', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('logs_id');
             $table->string('action_type', 10)->default('');
             $table->string('table', 20)->default('');
             $table->string('old_value', 150)->default('');
