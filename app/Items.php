@@ -8,6 +8,7 @@ class Items extends Model
 {
     protected $table = 'items';
     protected $primaryKey = 'item_id';
+    public $incrementing = false;
     // protected $incrementing = true;
     /**
      * The attributes that are mass assignable.
@@ -15,7 +16,7 @@ class Items extends Model
      * @var array
      */
     protected $fillable = [
-        'item_img_name', 'item_name','menu_id', 'price', 'show', 'out of stock'
+        'item_id', 'item_img_name', 'item_name','menu_id', 'price', 'show', 'out_of_stock'
     ];
 
     /**

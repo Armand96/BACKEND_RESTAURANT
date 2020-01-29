@@ -17,7 +17,7 @@ class Items extends Migration
             $table->string('item_id', 7);
             $table->string('item_name', 50)->default('');
             $table->string('item_img_name', 75)->default('');
-            $table->string('menu_id', 30)->default('');
+            $table->string('menu_id', 20)->default('');
             $table->integer('price', false, true)->default(0);
             $table->boolean('show')->default(true);
             $table->boolean('out_of_stock')->default(false);

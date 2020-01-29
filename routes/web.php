@@ -25,6 +25,9 @@ $router->post('/', function() use ($router){
 // example localhost/api/{routename}
 $router->group(['prefix'=>'api'], function() use($router){
 
+    $router->get('alluser', 'UserController@allUser');
+    $router->get('allitem', 'ItemController@allItem');
+    $router->post('insertitem', 'ItemController@allItem');
     // group a route that need authentication
     $router->group(['middleware'=>'auth'], function() use($router){
 

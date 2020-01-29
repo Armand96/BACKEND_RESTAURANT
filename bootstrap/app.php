@@ -105,4 +105,33 @@ $app->router->group([
     require __DIR__.'/../routes/web.php';
 });
 
+
+// ========================== CUSTOM GLOBAL & FUNCTION
+define('defaultSuccessMsg', 'Success Get Data');
+define('defaultEmptyMsg', 'Empty Data');
+define('defaultInsertSuccessMsg', 'Success Insert Data');
+define('defaultUpdateSuccessMsg', 'Success Update Data');
+
+function respJson($success, $message, $data = "")
+{
+    if($success)
+    {
+        return response()->json([
+            "message"=>$message,
+            "success"=>$success,
+            "data"=>$data
+        ], 200);
+    }
+    else
+    {
+        return response()->json([
+            "message"=>$message,
+            "success"=>$success,
+            "data"=>$data
+        ], 404);
+    }
+}
+// ========================== END OF CUSTOM GLOBAL & FUNCTION
+
+
 return $app;
