@@ -112,6 +112,7 @@ define('defaultEmptyMsg', 'Empty Data');
 define('defaultInsertSuccessMsg', 'Success Insert Data');
 define('defaultReqMsg', 'Please Fill all the required data');
 define('defaultUpdateSuccessMsg', 'Success Update Data');
+define('defaultDeleteSuccessMsg', 'Success Delete Data');
 define('IMG_STORAGE_PATH', storage_path('item_image').'/');
 
 function respJson($success, $message, $data = "")

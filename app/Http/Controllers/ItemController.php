@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Items;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class ItemController extends Controller
 {
@@ -16,6 +18,17 @@ class ItemController extends Controller
     public function __construct()
     {
         //
+    }
+
+    public function allInOne(Request $request)
+    {
+        try {
+            
+            // $Items = Query::for()
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     public function allItem()
@@ -133,6 +146,25 @@ class ItemController extends Controller
             
             if($Items->save()) return respJson(true, defaultInsertSuccessMsg, $Items);
             else return respJson(false, "Failed Insert");
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    // DELETE ITEMS
+    public function deleteItems(Request $request)
+    {
+        $itemid = "";
+        try {
+
+            $this->validate($request, ['item_id'=>'required']);
+            $itemid = $request->input('item_id');
+
+            $Items = Items::find($itemid);
+
+            if($Items->delete()) return respJson(true, defaultDeleteSuccessMsg);
+            else return respJson(false, "Fail Delete Data");
 
         } catch (\Throwable $th) {
             throw $th;

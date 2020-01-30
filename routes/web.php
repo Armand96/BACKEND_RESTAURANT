@@ -26,9 +26,13 @@ $router->post('/', function() use ($router){
 $router->group(['prefix'=>'api'], function() use($router){
 
     $router->get('alluser', 'UserController@allUser');
-    $router->get('allitem', 'ItemController@allItem');
+
+    // =================== ITEMS
+    $router->get('itemall', 'ItemController@allItem');
     $router->post('iteminsert', 'ItemController@insertItem');
     $router->post('itemupdate', 'ItemController@updateItems');
+    $router->post('itemdelete', 'ItemController@deleteItems');
+    // =================== END OF ITEMS
 
     $router->get('checkfile', 'ItemController@checkFileExists');
 
