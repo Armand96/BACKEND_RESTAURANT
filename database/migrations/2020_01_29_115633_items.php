@@ -14,8 +14,8 @@ class Items extends Migration
     public function up()
     {
         Schema::create('items', function (Blueprint $table) {
-            $table->string('item_id', 7);
-            $table->string('item_name', 50)->default('');
+            $table->bigIncrements('item_id');
+            $table->string('item_name', 50)->default('')->unique();
             $table->string('item_img_name', 75)->default('');
             $table->string('menu_id', 20)->default('');
             $table->integer('price', false, true)->default(0);

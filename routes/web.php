@@ -27,7 +27,11 @@ $router->group(['prefix'=>'api'], function() use($router){
 
     $router->get('alluser', 'UserController@allUser');
     $router->get('allitem', 'ItemController@allItem');
-    $router->post('insertitem', 'ItemController@allItem');
+    $router->post('iteminsert', 'ItemController@insertItem');
+    $router->post('itemupdate', 'ItemController@updateItems');
+
+    $router->get('checkfile', 'ItemController@checkFileExists');
+
     // group a route that need authentication
     $router->group(['middleware'=>'auth'], function() use($router){
 
