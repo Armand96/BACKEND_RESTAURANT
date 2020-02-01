@@ -22,9 +22,28 @@ class ItemController extends Controller
 
     public function allInOne(Request $request)
     {
-        try {
+        $menuid = "";
+        $itemname = "";
+        $show = "";
+        $out_of_stock = "";
+        $filter = "";
+        
+        try {      
             
-            // $Items = Query::for()
+            if($request->has('menu_id')) $menuid = " AND menu_id = '".$request->input('menu_id')."'";
+            if($request->has('item_name')) $itemname = " AND item_name LIKE '%".$request->input('item_name')."%'";
+            if($request->has('shows')) $show = " AND shows = ".$request->input('shows');
+            if($request->has('out_of_stock')) $out_of_stock = " AND out_of_stock = ".$request->input('out_of_stock');
+            // dd($show);
+            $filter = $menuid.$itemname.$show.$out_of_stock;
+            // dd($filter);
+            
+            $Items = DB::select('select * from items where 1=1 '.$filter);
+            if(empty($Items)) $msg = defaultEmptyMsg;
+            else $msg = defaultSuccessMsg;
+
+            return respJson(true, $msg, $Items);
+            
 
         } catch (\Throwable $th) {
             throw $th;
@@ -56,7 +75,7 @@ class ItemController extends Controller
 
         try 
         {
-            $Items = Items::where('menu_id', '=', $request->input('menu_id'));
+            $Items = Items::where('menu_id', '=', $request->input('menu_id'))->get();
             if($Items->isEmpty()) $msg = defaultEmptyMsg;
             else $msg = defaultSuccessMsg;
 

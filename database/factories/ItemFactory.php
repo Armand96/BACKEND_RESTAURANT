@@ -21,12 +21,12 @@ $factory->define(App\Items::class, function (Faker\Generator $faker) {
 
     // make sure the property same as the model
     return [
-        'item_id'=>$itemid,
+        // 'item_id'=>$itemid,
         'item_img_name' => $img,
         'item_name' => $name,
         'menu_id' => $faker->randomElement($menu),
         'price' => $faker->randomNumber(2),
-        'show' => $faker->boolean,
+        'shows' => $faker->boolean,
         'out_of_stock' => $faker->boolean,
     ];
 });

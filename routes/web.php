@@ -25,9 +25,12 @@ $router->post('/', function() use ($router){
 // example localhost/api/{routename}
 $router->group(['prefix'=>'api'], function() use($router){
 
+    // =================== USERS
     $router->get('alluser', 'UserController@allUser');
+    // =================== END OF USERS
 
     // =================== ITEMS
+    $router->post('itemalls', 'ItemController@allInOne');
     $router->get('itemall', 'ItemController@allItem');
     $router->post('iteminsert', 'ItemController@insertItem');
     $router->post('itemupdate', 'ItemController@updateItems');
@@ -42,3 +45,12 @@ $router->group(['prefix'=>'api'], function() use($router){
     });
 
 });
+
+$router->get('/{any:.*}', function($any){
+    return "<h1 style='text-align:center'> FUCK OFF!!!! </h1>";
+    // return redirect('http://www.kontol.com');
+    // return date('Y-m-d H:i:s');
+    // header("location : ". $_SERVER['HTTP_HOST']);
+    // echo "test";
+    // exit;
+ });
