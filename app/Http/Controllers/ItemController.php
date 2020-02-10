@@ -138,6 +138,7 @@ class ItemController extends Controller
             $itemname = $req['item_name']; 
             $Items = Items::find($itemid);
 
+            // ============ Procedure checking Image
             if($Items->item_img_name != "")
             {
                 $imgpath = IMG_STORAGE_PATH.$Items->item_img_name;
@@ -154,6 +155,8 @@ class ItemController extends Controller
                 $img = str_replace(' ', '_', $itemname).$extname;
                 $request->file('item_img_name')->move(storage_path('item_image'), $img);
             } else $img = "";
+            // ============ Procedure checking Image
+
 
             $Items->item_img_name = $img;
             $Items->item_name = $itemname;
@@ -163,8 +166,8 @@ class ItemController extends Controller
             $Items->out_of_stock = isset($req['out_of_stock']) ? $req['out_of_stock'] : false;
             // dd($Items);
             
-            if($Items->save()) return respJson(true, defaultInsertSuccessMsg, $Items);
-            else return respJson(false, "Failed Insert");
+            if($Items->save()) return respJson(true, defaultUpdateSuccessMsg, $Items);
+            else return respJson(false, "Failed Update");
 
         } catch (\Throwable $th) {
             throw $th;
