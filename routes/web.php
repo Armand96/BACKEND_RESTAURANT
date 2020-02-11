@@ -17,7 +17,7 @@ $router->get('/', function () use ($router) {
 
 $router->post('/', function() use ($router){
     return response()->json([
-        "message"=>'test cors, if this show in console log then cors is working'
+        "message"=>'test cors, if this data is showing then cors is working'
     ]);
 });
 
@@ -26,24 +26,35 @@ $router->post('/', function() use ($router){
 $router->group(['prefix'=>'api'], function() use($router){
 
     // =================== USERS
-    $router->get('usreall', 'UserController@allUser');
+    $router->get('userall', 'UserController@allUser');
     $router->post('userinsert', 'UserController@insertUser');
     $router->post('userupdate', 'UserController@updateUser');
     $router->post('userdelete', 'UserController@deleteUser');
+    $router->post('userlogin', 'UserController@login');
     // =================== END OF USERS
 
     // =================== ITEMS
     $router->get('itemall', 'ItemController@allItem');
     $router->post('itemall', 'ItemController@allInOne');
-    $router->post('iteminsert', 'ItemController@insertItem');
-    $router->post('itemupdate', 'ItemController@updateItems');
-    $router->post('itemdelete', 'ItemController@deleteItems');
+    // $router->post('iteminsert', 'ItemController@insertItem');
+    // $router->post('itemupdate', 'ItemController@updateItems');
+    // $router->post('itemdelete', 'ItemController@deleteItems');
     // =================== END OF ITEMS
 
     $router->get('checkfile', 'ItemController@checkFileExists');
 
     // group a route that need authentication
     $router->group(['middleware'=>'auth'], function() use($router){
+
+        // =================== ITEMS
+        $router->post('iteminsert', 'ItemController@insertItem');
+        $router->post('itemupdate', 'ItemController@updateItems');
+        $router->post('itemdelete', 'ItemController@deleteItems');
+        // =================== END OF ITEMS
+
+        // ====================== LOGS
+        $router->get('logall', 'LogController@allLogs');
+        // ====================== END OF LOGS
 
     });
 

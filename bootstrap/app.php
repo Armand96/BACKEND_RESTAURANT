@@ -113,6 +113,10 @@ define('defaultInsertSuccessMsg', 'Success Insert Data');
 define('defaultReqMsg', 'Please Fill all the required data');
 define('defaultUpdateSuccessMsg', 'Success Update Data');
 define('defaultDeleteSuccessMsg', 'Success Delete Data');
+define('defaultSuccessLogin', "Login Success");
+define('defaultFailedLogin', "Login Failed");
+define('defaultEmptyUser', 'There is no user');
+define('defaultWrongPass', 'Wrong Password');
 define('IMG_STORAGE_PATH', storage_path('item_image').'/');
 
 function respJson($success, $message, $data = "")
