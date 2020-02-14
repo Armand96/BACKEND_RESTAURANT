@@ -30,6 +30,7 @@ $router->group(['prefix'=>'api'], function() use($router){
     $router->post('userinsert', 'UserController@insertUser');
     $router->post('userupdate', 'UserController@updateUser');
     $router->post('userdelete', 'UserController@deleteUser');
+    $router->post('userchangepassword', 'UserController@changePassword');
     $router->post('userlogin', 'UserController@login');
     // =================== END OF USERS
 

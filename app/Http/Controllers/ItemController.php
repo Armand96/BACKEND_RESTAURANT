@@ -97,7 +97,8 @@ class ItemController extends Controller
 
             $this->validate($request, [
                 'item_name'=>'required|max:50',
-                'item_img_name'=>'image|mimes:jpg,jpeg,png|max:1500'
+                'item_img_name'=>'image|mimes:jpg,jpeg,png|max:1500',
+                'price'=>'required'
             ]);
 
             $itemname = $request->input('item_name');            
@@ -132,7 +133,8 @@ class ItemController extends Controller
 
             $this->validate($request, [
                 'item_id'=>'required',
-                'item_name'=>'required|max:50'
+                'item_name'=>'required|max:50',
+                'price'=>'required'
             ]);
             
             $itemid = $req['item_id'];

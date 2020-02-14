@@ -29,13 +29,14 @@ class UserController extends Controller
                 'userpassword'=>'required'
             ]);
 
-            $User = User::where('username', $req['username'])->first();
-            if($User->isEmpty()) return respJson(false, defaultEmptyUser);
+            $User = User::where('username', '=', $req['username'])->first();
+            // dd($User);
+            if(!$User) return respJson(false, defaultEmptyUser);
             else 
             {
                 if(Hash::check($req['userpassword'], $User->userpassword))
                 {
-                    $apiToken = base64_encode($req['nomor_pegawai'].$req['username'].date('Y-m-d'));
+                    $apiToken = base64_encode($User->nomor_pegawai.$User->username.date('Y-m-d H:i:s'));
                     $User->api_token = $apiToken;
                     $User->save();
 
@@ -118,6 +119,33 @@ class UserController extends Controller
 
 
         } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    public function changePassword(Request $request)
+    {
+        $model = $request->all();
+        try
+        {
+            $this->validate($request, [
+                'username'=>'required|max:20',
+                'userpassword'=>'required'
+            ]);
+            // dd($model);
+            $User = User::where('username', '=', $model['username'])->first();
+
+            $model['api_token'] = base64_encode($User->nomor_pegawai.$User->username.date('Y-m-d H:i:s'));
+            $model['userpassword'] = Hash::make($model['userpassword']);
+
+            $User->userpassword = $model['userpassword'];
+            $User->api_token = $model['api_token'];
+
+            if($User->save()) return respJson(true, "Success Change Password, Please Login again", $User);
+            else return respJson(false, "Failed Change Password");
+        }
+        catch (\Throwable $th)
+        {
             throw $th;
         }
     }
