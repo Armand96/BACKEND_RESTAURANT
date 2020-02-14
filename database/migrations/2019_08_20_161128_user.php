@@ -15,9 +15,9 @@ class User extends Migration
     {
         Schema::create('user', function (Blueprint $table) {
             $table->bigIncrements('userid');
-            $table->integer('nomor_pegawai', false, true);
+            $table->string('nomor_pegawai', 10);
             $table->string('username', 20);
-            $table->string('userpassword', 50);
+            $table->string('userpassword', 100);
             $table->string('api_token', 50);
             $table->timestamps();
         });

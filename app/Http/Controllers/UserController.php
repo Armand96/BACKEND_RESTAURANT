@@ -81,11 +81,15 @@ class UserController extends Controller
             ]);
             // dd($model);
             $model['api_token'] = base64_encode($model['nomor_pegawai'].$model['username']);
-            $model['userpassword'] = Hash::make($model['Userpassword']);
+            $model['userpassword'] = Hash::make($model['userpassword']);
 
-            $User = User::create($model);
+            $User = new User();
+            $User->nomor_pegawai = $model['nomor_pegawai'];
+            $User->api_token = $model['api_token'];
+            $User->userpassword = $model['userpassword'];
+            $User->username = $model['username'];
 
-            if($User) return respJson(true, defaultInsertSuccessMsg, $User);
+            if($User->save()) return respJson(true, defaultInsertSuccessMsg, $User);
             else return respJson(false, "Failed Insert");
         } 
         catch (\Throwable $th) 

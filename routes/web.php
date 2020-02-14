@@ -34,6 +34,7 @@ $router->group(['prefix'=>'api'], function() use($router){
     // =================== END OF USERS
 
     // =================== ITEMS
+    $router->get('itemimage/{name}', 'ItemController@getImage');
     $router->get('itemall', 'ItemController@allItem');
     $router->post('itemall', 'ItemController@allInOne');
     // $router->post('iteminsert', 'ItemController@insertItem');
@@ -41,6 +42,7 @@ $router->group(['prefix'=>'api'], function() use($router){
     // $router->post('itemdelete', 'ItemController@deleteItems');
     // =================== END OF ITEMS
 
+    
     $router->get('checkfile', 'ItemController@checkFileExists');
 
     // group a route that need authentication

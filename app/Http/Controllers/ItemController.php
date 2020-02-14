@@ -97,6 +97,7 @@ class ItemController extends Controller
 
             $this->validate($request, [
                 'item_name'=>'required|max:50',
+                'item_img_name'=>'image|mimes:jpg,jpeg,png|max:1500'
             ]);
 
             $itemname = $request->input('item_name');            
@@ -190,6 +191,20 @@ class ItemController extends Controller
 
         } catch (\Throwable $th) {
             throw $th;
+        }
+    }
+
+
+    public function getImage($name)
+    {
+        $imgPath = storage_path('item_image') . '/' . $name;
+        if(file_exists($imgPath)) {
+            $file = file_get_contents($imgPath);
+            return response($file, 200)->header('Content-Type', 'image/jpeg');
+        }
+        else
+        {
+            return respJson(false, "No Item Image Found");
         }
     }
 
