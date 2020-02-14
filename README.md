@@ -7,3 +7,4 @@ Step Instalasi
 - ubah isi file .env. Pada settingan APP_KEY isi dengan random string maks 32 char
 - DB_DATABASE=restaurant, username dan root isi sesuai settingan mysql masing2
 - backup database restaurant.sql
+- akses url dimulai dari folder public
